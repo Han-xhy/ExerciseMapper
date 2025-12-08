@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>锻炼计划生成器 - xhy_han</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💪 锻炼计划生成器</h1>
+            <div class="usage-guide">
+                <h3>📖 使用说明</h3>
+                <ol>
+                    <li><strong>选择动作</strong>：使用上方筛选器按肌群或器械筛选，找到想要的动作</li>
+                    <li><strong>添加到计划</strong>：双击动作或点击 ➕ 按钮，将动作添加到"我的锻炼计划"</li>
+                    <li><strong>配置每日计划</strong>：选择日期，从计划框中选择动作分配到对应日期</li>
+                    <li><strong>导出文件</strong>：点击"导出 Markdown 文件"，生成的文件可导入 iPhone 备忘录</li>
+                    <li><strong>导入备忘录</strong>：可选择发送到微信，在微信中找到文件选择用备忘录打开</li>
+                    <li><strong>完成记录</strong>：在备忘录中勾选核对清单，记录训练完成情况</li>
+                </ol>
+            </div>
+        </header>
+
+        <div class="workout-config">
+            <div class="section">
+                <div class="section-header">
+                    <h2>🏋️ 选择锻炼项目 <span class="workout-count" id="workoutCount"></span></h2>
+                    <button class="btn-view-muscle" id="viewMuscleBtn">🔍 查看肌群</button>
+                </div>
+                <div class="filter-container">
+                    <div class="part-filter">
+                        <label>按肌群筛选：</label>
+                        <select class="filter-select" id="partSelect">
+                            <option value="">全部肌群</option>
+                            <!-- 动态生成肌群选项（显示主部位+子肌群） -->
+                        </select>
+                    </div>
+                    <div class="equipment-filter">
+                        <label>按器械筛选：</label>
+                        <select class="filter-select" id="equipmentSelect">
+                            <option value="">全部器械</option>
+                            <!-- 动态生成器械选项 -->
+                        </select>
+                    </div>
+                </div>
+                <div class="workout-list" id="workoutList">
+                    <!-- 动态生成锻炼选项 -->
+                </div>
+            </div>
+
+            <div class="section plan-box-section">
+                <h2>📋 我的锻炼计划</h2>
+                <p class="hint-text">将左侧的动作拖到这里，或双击动作添加到计划框</p>
+                <div class="plan-box" id="planBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
+                    <div class="plan-box-empty" id="planBoxEmpty">拖拽动作到这里或双击动作添加</div>
+                    <div class="plan-box-items" id="planBoxItems">
+                        <!-- 动态生成计划框内容 -->
+                    </div>
+                </div>
+                <button class="btn-secondary" id="clearPlanBoxBtn">清空计划框</button>
+            </div>
+
+            <div class="section">
+                <h2>📅 每日锻炼计划</h2>
+                <div class="days-selector">
+                    <label class="day-checkbox">
+                        <input type="checkbox" value="0"> 周一
+                    </label>
+                    <label class="day-checkbox">
+                        <input type="checkbox" value="1"> 周二
+                    </label>
+                    <label class="day-checkbox">
+                        <input type="checkbox" value="2"> 周三
+                    </label>
+                    <label class="day-checkbox">
+                        <input type="checkbox" value="3"> 周四
+                    </label>
+                    <label class="day-checkbox">
+                        <input type="checkbox" value="4"> 周五
+                    </label>
+                    <label class="day-checkbox">
+                        <input type="checkbox" value="5"> 周六
+                    </label>
+                    <label class="day-checkbox">
+                        <input type="checkbox" value="6"> 周日
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>⚙️ 每日计划配置</h2>
+                <div id="dailyPlans">
+                    <!-- 动态生成每日计划配置 -->
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn-primary" id="exportMarkdownBtn">📄 导出 Markdown 文件</button>
+                <button class="btn-share" id="shareToNotesBtn">📱 一键分享到备忘录</button>
+                <button class="btn-secondary" id="previewBtn">👁️ 预览 Markdown</button>
+                <button class="btn-secondary" id="clearBtn">🗑️ 清空配置</button>
+            </div>
+        </div>
+
+        <div class="preview-section" id="previewSection" style="display: none;">
+            <h2>Markdown 预览</h2>
+            <pre id="previewContent"></pre>
+        </div>
+        
+        <footer class="page-footer">
+            <p>制作人：许涵宇</p>
+            <p>联系微信：xhy420490890</p>
+        </footer>
+    </div>
+
+    <!-- 肌群图解抽屉 -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="muscle-drawer" id="muscleDrawer">
+        <div class="drawer-header">
+            <h3>💪 健身肌肉图解</h3>
+            <button class="drawer-close" id="drawerClose">✕</button>
+        </div>
+        <div class="drawer-content">
+            <img src="健身肌肉图解.jpg" alt="健身肌肉图解" class="muscle-diagram">
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
