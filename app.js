@@ -1419,7 +1419,7 @@ function setupEventListeners() {
         // 绑定事件
         daysSelector.addEventListener('change', dayCheckboxHandler);
         console.log('日期选择器事件监听器已绑定');
-    } else {
+        } else {
         console.error('找不到 .days-selector 元素');
     }
     
@@ -1497,12 +1497,46 @@ async function shareToNotes() {
     // 检查是否支持 Web Share API（主要在移动设备上支持）
     if (navigator.share) {
         try {
+            // 优先尝试分享文件（iOS Safari支持文件分享）
+            if (navigator.canShare) {
+                try {
+                    // 创建Markdown文件
+                    const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
+                    const file = new File([blob], `锻炼计划_${new Date().toISOString().split('T')[0]}.md`, { 
+                        type: 'text/markdown;charset=utf-8' 
+                    });
+                    
+                    // 检查是否可以分享文件
+                    const shareData = {
+                        title: '我的锻炼计划',
+                        files: [file]
+                    };
+                    
+                    if (navigator.canShare(shareData)) {
+                        await navigator.share(shareData);
+                        console.log('文件分享成功');
+                        // 提示用户选择备忘录并选择"在备忘录中打开"
+                        setTimeout(() => {
+                            alert('✅ 分享成功！\n\n在分享菜单中选择"备忘录"，然后选择"在备忘录中打开"即可看到渲染后的效果。');
+                        }, 500);
+                        return;
+                    }
+                } catch (fileError) {
+                    console.log('文件分享不支持，尝试文本分享');
+                }
+            }
+            
+            // 如果不支持文件分享，分享文本内容
+            // iPhone备忘录会自动识别Markdown格式并渲染
             await navigator.share({
                 title: '我的锻炼计划',
                 text: markdown
             });
-            // 分享成功
-            console.log('分享成功');
+            console.log('文本分享成功');
+            // 提示用户
+            setTimeout(() => {
+                alert('✅ 分享成功！\n\n在分享菜单中选择"备忘录"即可。备忘录会自动识别Markdown格式并渲染。');
+            }, 500);
         } catch (error) {
             // 用户取消分享或其他错误
             if (error.name !== 'AbortError') {
