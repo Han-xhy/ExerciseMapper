@@ -1,0 +1,1120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+header p {
+    color: #666;
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+.header-info {
+    font-size: 0.9em !important;
+    color: #888 !important;
+    font-style: italic;
+}
+
+.usage-guide {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+}
+
+.usage-guide h3 {
+    font-size: 1.1em;
+    margin-bottom: 12px;
+    color: #333;
+    font-weight: 600;
+}
+
+.usage-guide ol {
+    margin-left: 20px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.usage-guide li {
+    margin-bottom: 8px;
+}
+
+.usage-guide strong {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 12px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.section h2 {
+    margin-bottom: 0;
+    color: #333;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.workout-count {
+    font-size: 0.7em;
+    color: #666;
+    font-weight: normal;
+    background: #f0f0f0;
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.filter-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.part-filter,
+.equipment-filter {
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+}
+
+.part-filter label,
+.equipment-filter label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* 下拉菜单样式 */
+.filter-select {
+    width: 100%;
+    padding: 10px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #333;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    padding-right: 40px;
+}
+
+.filter-select:hover {
+    border-color: #667eea;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* 下拉菜单分隔线样式 */
+.filter-select option[disabled] {
+    background: #f0f0f0;
+    color: #000;
+    border-top: 1px solid #000;
+    padding: 5px 0;
+    font-weight: normal;
+    cursor: default;
+}
+
+.filter-select option {
+    padding: 8px;
+    font-size: 0.95em;
+}
+
+.sub-part-filter {
+    margin-top: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+}
+
+.sub-part-filter label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+}
+
+.sub-part-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.sub-part-btn {
+    padding: 6px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 18px;
+    background: white;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #666;
+}
+
+.sub-part-btn:hover {
+    border-color: #764ba2;
+    transform: translateY(-2px);
+    color: #764ba2;
+}
+
+.sub-part-btn.active {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    color: white;
+    border-color: #764ba2;
+}
+
+.clear-filter-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.btn-clear-filter {
+    padding: 10px 20px;
+    background: #FF3B30;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-clear-filter:hover {
+    background: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 59, 48, 0.3);
+}
+
+.workout-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+    max-height: 340px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 5px 0 0;
+}
+
+/* 自定义滚动条样式 */
+.workout-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.workout-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.workout-list::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+.workout-list::-webkit-scrollbar-thumb:hover {
+    background: #5568d3;
+}
+
+.no-workouts {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 1.1em;
+}
+
+.workout-item {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.workout-item:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.workout-item.selected {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+}
+
+.workout-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.workout-item {
+    position: relative;
+    cursor: move;
+}
+
+.workout-item.dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+}
+
+.workout-item.in-plan-box {
+    border: 2px dashed #34C759;
+}
+
+.workout-item-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.workout-item h3 {
+    font-size: 1.1em;
+    margin: 0;
+    color: #333;
+}
+
+.workout-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.workout-sets {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.workout-description {
+    font-size: 0.85em;
+    color: #999;
+    margin-bottom: 6px;
+    font-style: italic;
+}
+
+.workout-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.workout-actions-bottom {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.btn-view-bilibili {
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-view-bilibili:hover {
+    background: #5568d3;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+}
+
+.btn-add-to-box {
+    background: transparent;
+    color: #34C759;
+    border: none;
+    border-radius: 0;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.btn-add-to-box:hover {
+    color: #2FA84F;
+    transform: scale(1.1);
+}
+
+.part-badge {
+    font-size: 0.8em;
+    padding: 5px 10px;
+    border-radius: 14px;
+    white-space: nowrap;
+    font-weight: 600;
+    display: inline-block;
+    letter-spacing: 0.3px;
+}
+
+.part-chest {
+    background: #FFE5E5;
+    color: #D32F2F;
+}
+
+.part-legs {
+    background: #E3F2FD;
+    color: #1976D2;
+}
+
+.part-core {
+    background: #FFF3E0;
+    color: #F57C00;
+}
+
+.part-arms {
+    background: #F3E5F5;
+    color: #7B1FA2;
+}
+
+.part-back {
+    background: #E8F5E9;
+    color: #388E3C;
+}
+
+.part-shoulders {
+    background: #E1F5FE;
+    color: #0277BD;
+}
+
+.part-cardio {
+    background: #FCE4EC;
+    color: #C2185B;
+}
+
+.equipment-badge {
+    font-size: 0.8em;
+    padding: 5px 10px;
+    border-radius: 14px;
+    white-space: nowrap;
+    font-weight: 600;
+    display: inline-block;
+    letter-spacing: 0.3px;
+}
+
+.equipment-barbell {
+    background: #E8EAF6;
+    color: #3F51B5;
+}
+
+.equipment-dumbbell {
+    background: #FFF3E0;
+    color: #FF6F00;
+}
+
+.equipment-machine {
+    background: #F1F8E9;
+    color: #558B2F;
+}
+
+.equipment-bodyweight {
+    background: #FCE4EC;
+    color: #C2185B;
+}
+
+.sub-part-badge {
+    font-size: 0.8em;
+    padding: 5px 10px;
+    border-radius: 14px;
+    white-space: nowrap;
+    font-weight: 600;
+    display: inline-block;
+    letter-spacing: 0.3px;
+}
+
+/* 胸部子肌群 */
+.sub-upper-chest, .sub-middle-chest, .sub-lower-chest {
+    background: #FFE5E5;
+    color: #D32F2F;
+}
+
+/* 背部子肌群 */
+.sub-lats, .sub-mid-back, .sub-lower-back, .sub-traps-upper, .sub-traps-mid, .sub-traps-lower {
+    background: #E8F5E9;
+    color: #388E3C;
+}
+
+/* 肩部子肌群 */
+.sub-front-delt, .sub-lateral-delt, .sub-rear-delt {
+    background: #E1F5FE;
+    color: #0277BD;
+}
+
+/* 手臂子肌群 */
+.sub-biceps-long, .sub-biceps-short {
+    background: #E3F2FD;
+    color: #1565C0;
+}
+
+.sub-triceps-lateral, .sub-triceps-long, .sub-triceps-medial {
+    background: #FFF3E0;
+    color: #E65100;
+}
+
+.sub-forearms-flexors, .sub-forearms-extensors {
+    background: #F3E5F5;
+    color: #7B1FA2;
+}
+
+/* 核心子肌群 */
+.sub-upper-abs, .sub-lower-abs, .sub-obliques, .sub-core-stability {
+    background: #FFF3E0;
+    color: #F57C00;
+}
+
+/* 腿部子肌群 */
+.sub-quads-rectus, .sub-quads-lateral, .sub-quads-medial {
+    background: #E3F2FD;
+    color: #1976D2;
+}
+
+.sub-hamstrings-biceps, .sub-hamstrings-semitendinosus {
+    background: #E8F5E9;
+    color: #2E7D32;
+}
+
+.sub-calves-gastrocnemius, .sub-calves-soleus {
+    background: #E1F5FE;
+    color: #01579B;
+}
+
+/* 臀部子肌群 */
+.sub-glutes-maximus, .sub-glutes-medius {
+    background: #F3E5F5;
+    color: #6A1B9A;
+}
+
+/* 兼容旧数据 */
+.sub-biceps {
+    background: #E3F2FD;
+    color: #1565C0;
+}
+
+.sub-triceps {
+    background: #FFF3E0;
+    color: #E65100;
+}
+
+.workout-item p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.workout-item-footer {
+    display: flex;
+    gap: 12px;
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 8px;
+}
+
+
+.days-selector {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.day-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 0;
+}
+
+.day-checkbox:hover {
+    border-color: #667eea;
+}
+
+.day-checkbox input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.day-plan {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+}
+
+.day-plan h3 {
+    margin-bottom: 10px;
+    color: #667eea;
+}
+
+.day-plan-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.day-plan-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.day-plan-item-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.day-plan-item-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.day-plan-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.day-plan-item-header h4 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #333;
+    flex: 1;
+    padding-right: 10px;
+}
+
+.day-plan-item-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.day-plan-item-sets {
+    font-size: 0.9em;
+    color: #666;
+    margin: 8px 0;
+    font-weight: 500;
+}
+
+.day-plan-item-footer {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    font-size: 0.85em;
+    color: #999;
+}
+
+.day-plan-item-footer span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.remove-btn {
+    background: #FF3B30;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.remove-btn:hover {
+    background: #d32f2f;
+    transform: scale(1.1);
+}
+
+
+.day-workout-select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1em;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.day-workout-select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* 计划框样式 */
+.plan-box-section {
+    margin-bottom: 30px;
+}
+
+.hint-text {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.plan-box {
+    min-height: 150px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border: 3px dashed #667eea;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.plan-box.drag-over {
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    border-color: #764ba2;
+    transform: scale(1.02);
+}
+
+.plan-box-empty {
+    text-align: center;
+    color: #999;
+    font-size: 1.1em;
+    padding: 40px;
+}
+
+.plan-box-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.plan-box-item {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    cursor: move;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.plan-box-item:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.2);
+}
+
+.plan-box-item.dragging {
+    opacity: 0.5;
+}
+
+.plan-box-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.plan-box-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plan-box-item-header strong {
+    font-size: 0.95em;
+    color: #333;
+}
+
+.remove-from-box-btn {
+    background: #FF3B30;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.remove-from-box-btn:hover {
+    background: #d32f2f;
+    transform: scale(1.1);
+}
+
+.plan-box-item-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 0.85em;
+    color: #666;
+}
+
+.export-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.export-settings label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.export-settings input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 150px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+.preview-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 12px;
+}
+
+.preview-section pre {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+
+/* 查看肌群按钮 */
+.btn-view-muscle {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn-view-muscle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-view-muscle:active {
+    transform: translateY(0);
+}
+
+/* 抽屉样式 */
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.drawer-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.muscle-drawer {
+    position: fixed;
+    top: 0;
+    right: -500px;
+    width: 500px;
+    max-width: 90vw;
+    height: 100vh;
+    background: white;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.muscle-drawer.active {
+    right: 0;
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.drawer-header h3 {
+    margin: 0;
+    font-size: 1.3em;
+    color: white;
+}
+
+.drawer-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.drawer-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.drawer-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background: #f9f9f9;
+}
+
+.muscle-diagram {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    .filter-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .btn-view-muscle {
+        width: 100%;
+    }
+
+    .part-buttons,
+    .equipment-buttons {
+        gap: 8px;
+    }
+
+    .part-btn,
+    .equipment-btn {
+        padding: 6px 12px;
+        font-size: 0.85em;
+    }
+
+    .workout-list {
+        grid-template-columns: 1fr;
+    }
+
+    .plan-box-items {
+        grid-template-columns: 1fr;
+    }
+
+    .workout-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .part-badge {
+        margin-top: 4px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+    
+    .days-selector {
+        flex-wrap: wrap;
+    }
+    
+    .day-checkbox {
+        flex: 0 0 calc(50% - 5px);
+        min-width: calc(50% - 5px);
+    }
+}
+
+/* 页面底部 */
+.page-footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid #f0f0f0;
+    background: #f9f9f9;
+    border-radius: 0 0 20px 20px;
+}
+
+.page-footer p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.page-footer p:first-child {
+    font-weight: 600;
+    color: #333;
+}
+
